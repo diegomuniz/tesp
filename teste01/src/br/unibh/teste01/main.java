@@ -3,6 +3,9 @@ package br.unibh.teste01;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import br.unibh.entidades.Aluno;
+import br.unibh.entidades.Professor;
+
 public class main {
 
 	public static void main(String[] args) {
