@@ -1,12 +1,14 @@
 package br.unibh.teste01;
 
 import java.math.BigDecimal;
+import java.sql.Connection;
 import java.util.Date;
 
 import br.unibh.entidades.Aluno;
 import br.unibh.entidades.Professor;
+import br.unibh.persistencia.JDBCUtil;
 
-public class main {
+public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -17,6 +19,14 @@ public class main {
 				
 		System.out.println(a1);
 		System.out.println(prof1);
+		
+		try {
+			Connection c = JDBCUtil.getConnection();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-
+	
+	
 }
