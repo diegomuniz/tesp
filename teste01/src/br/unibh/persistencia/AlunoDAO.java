@@ -1,10 +1,15 @@
 package br.unibh.persistencia;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.unibh.entidades.Aluno;
 
 public class AlunoDAO implements DAO<Aluno,Long> {
+	
+	private static Connection con = null;
 
 	@Override
 	public Aluno find(Long id) {
@@ -32,8 +37,33 @@ public class AlunoDAO implements DAO<Aluno,Long> {
 
 	@Override
 	public List<Aluno> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Aluno> lista = new ArrayList<Aluno>();
+		try {
+			con = JDBCUtil.getConnection();
+			ResultSet res = con.prepareStatement(
+					"select * from tb_aluno").executeQuery();
+			while (res.next()){
+				lista.add(
+						new Aluno(
+								res.getLong("id"), 
+								res.getString("nome"), 
+								res.getString("cpf"), 
+								res.getString("matricula"), 
+						null)
+						);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				JDBCUtil.closeConnection();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return lista;
 	}
 	
 	
