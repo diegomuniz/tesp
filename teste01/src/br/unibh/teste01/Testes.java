@@ -28,9 +28,20 @@ public class Testes {
 	@Test
 	public void testeAlunoInsert() {
 		AlunoDAO dao = new AlunoDAO();
-		Aluno a = new Aluno (null, "Fulano de tal", "12345678901", "12345678", new Date(1998-12-12));
+		Aluno a = new Aluno (null, "Beltrano de tal", "12345678901", "12345678", new Date(1998-12-12));
 		dao.insert(a);
-		Aluno b = dao.find("Fulano de tal");
+		
+		Aluno b = dao.find("Beltrano");
 		Assert.assertNotNull(b);
+		b.setNome("Fulano da Silva");
+		dao.update(b);
+		
+		Aluno c = dao.find("Fulano da Silva");
+		Assert.assertNotNull(c);
+		
+		dao.delete(c);
+		Aluno d = dao.find("Fulano");
+		Assert.assertNull(d);
 	}
 }
+

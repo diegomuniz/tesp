@@ -1,5 +1,7 @@
 package br.unibh.persistencia;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
 
 import br.unibh.entidades.Professor;
@@ -8,7 +10,21 @@ public class ProfessorDAO implements DAO<Professor,Long> {
 
 	@Override
 	public Professor find(Long id) {
-		// TODO Auto-generated method stub
+		try {
+			PreparedStatement p = JDBCUtil.getConnection().prepareStatement("select * from tb_aluno where id = ?");
+			p.setLong(1, id);
+			ResultSet res = p.executeQuery();
+
+			if (res.next()) {
+				return new Professor(res.getLong("id"), res.getString("nome"), res.getString("cpf"),
+						res.getBigDecimal("salario"));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.closeConnection();
+		}
 		return null;
 	}
 

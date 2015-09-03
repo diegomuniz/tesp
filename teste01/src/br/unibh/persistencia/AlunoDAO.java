@@ -34,8 +34,8 @@ public class AlunoDAO implements DAO<Aluno, Long> {
 
 	public Aluno find(String nome) {
 		try {
-			PreparedStatement p = JDBCUtil.getConnection().prepareStatement("select * from tb_aluno where nome like %");
-			p.setString(1, nome);
+			PreparedStatement p = JDBCUtil.getConnection().prepareStatement("select * from tb_aluno where nome like ?");
+			p.setString(1, nome+"%");
 			ResultSet res = p.executeQuery();
 
 			if (res.next()) {
@@ -56,12 +56,12 @@ public class AlunoDAO implements DAO<Aluno, Long> {
 		// TODO Auto-generated method stub
 		try {
 			PreparedStatement p = JDBCUtil.getConnection().prepareStatement(
-					"insert into tb_aluno (nome, cpf, matricula, data_aniversario values (?,?,?,?)");
+					"insert into tb_aluno (nome, cpf, matricula, data_aniversario) values (?, ?, ?, ?)");
 			p.setString(1, t.getNome());
 			p.setString(2, t.getCpf());
 			p.setString(3, t.getMatricula());
 			p.setString(4, df.format(t.getDataAniversario()));
-
+			p.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -72,14 +72,36 @@ public class AlunoDAO implements DAO<Aluno, Long> {
 
 	@Override
 	public void update(Aluno t) {
-		// TODO Auto-generated method stub
+		try {
+			PreparedStatement p = JDBCUtil.getConnection().prepareStatement(
+					"update tb_aluno set nome=?, cpf=?, matricula=?, data_aniversario=? where id=?");
+			p.setString(1, t.getNome());
+			p.setString(2, t.getCpf());
+			p.setString(3, t.getMatricula());
+			p.setString(4, df.format(t.getDataAniversario()));
+			p.setLong(5, t.getId());
+			p.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.closeConnection();
+		}
 
 	}
 
 	@Override
 	public void delete(Aluno t) {
 		// TODO Auto-generated method stub
-
+		try {
+			PreparedStatement p = JDBCUtil.getConnection().prepareStatement(
+					"delete from tb_aluno where id = ?");
+			p.setLong(1, t.getId());
+			p.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.closeConnection();
+		}
 	}
 
 	@Override
