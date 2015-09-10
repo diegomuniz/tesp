@@ -1,5 +1,6 @@
 package br.unibh.teste01;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -7,7 +8,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import br.unibh.entidades.Aluno;
+import br.unibh.entidades.Professor;
 import br.unibh.persistencia.AlunoDAO;
+import br.unibh.persistencia.ProfessorDAO;
 
 public class Testes {
 	@Test
@@ -41,6 +44,40 @@ public class Testes {
 		
 		dao.delete(c);
 		Aluno d = dao.find("Fulano");
+		Assert.assertNull(d);
+	}
+	
+	@Test
+	public void testeFindAllProfessor() {
+		ProfessorDAO dao = new ProfessorDAO();
+		List<Professor> lista = dao.findAll();
+		Assert.assertEquals(lista.size(), 100);
+	}
+
+	@Test
+	public void testeProfessorFind() {
+		ProfessorDAO dao = new ProfessorDAO();
+		Professor a = dao.find(19L);
+		Assert.assertEquals(a.getNome(), "Eugenia S. Odom");
+		
+	}
+	
+	@Test
+	public void testeProfessorInsert() {
+		ProfessorDAO dao = new ProfessorDAO();
+		Professor a = new Professor(null, "Beltrano da Silva", "12345678910", new BigDecimal(1950.00));
+		dao.insert(a);
+		
+		Professor b = dao.find("Beltrano");
+		Assert.assertNotNull(b);
+		b.setNome("Fulano da Silva");
+		dao.update(b);
+		
+		Professor c = dao.find("Fulano da Silva");
+		Assert.assertNotNull(c);
+		
+		dao.delete(c);
+		Professor d = dao.find("Fulano");
 		Assert.assertNull(d);
 	}
 }
