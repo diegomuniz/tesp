@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.unibh.escola.entidades.Professor;
+import br.unibh.entidades.Professor;
 
 public class ProfessorDAO implements DAO<Professor,Long> {
 

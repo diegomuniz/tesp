@@ -7,8 +7,8 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import br.unibh.escola.entidades.Aluno;
-import br.unibh.escola.entidades.Professor;
+import br.unibh.entidades.Aluno;
+import br.unibh.entidades.Professor;
 import br.unibh.persistencia.AlunoDAO;
 import br.unibh.persistencia.ProfessorDAO;
 
