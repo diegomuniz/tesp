@@ -1,4 +1,4 @@
-package br.unibh.entidades;
+package br.unibh.escola.entidades;
 
 import java.util.Date;
 
@@ -15,12 +15,12 @@ public class Aluno extends Pessoa {
 	// Construtores
 	
 	/**
-	 * Construtor padrão
+	 * Construtor padrï¿½o
 	 */
 	public Aluno(){}
 	
 	/**
-	 * Construtor apenas com os atributos básicos de Aluno
+	 * Construtor apenas com os atributos bï¿½sicos de Aluno
 	 * @param matricula
 	 * @param dataAniversario
 	 */

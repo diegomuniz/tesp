@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.unibh.entidades.Aluno;
+import br.unibh.escola.entidades.Aluno;
 
 public class AlunoDAO implements DAO<Aluno, Long> {
 

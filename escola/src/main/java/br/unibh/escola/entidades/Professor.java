@@ -1,9 +1,9 @@
-package br.unibh.entidades;
+package br.unibh.escola.entidades;
 
 import java.math.BigDecimal;
 
 public class Professor extends Pessoa {
-	// Variaveis de instância
+	// Variaveis de instï¿½ncia
 	private BigDecimal salario;
 	public static Double BONUS = 0.1D;
 	

@@ -1,4 +1,4 @@
-package br.unibh.entidades;
+package br.unibh.escola.entidades;
 
 public abstract class Pessoa {
 	private Long id;
