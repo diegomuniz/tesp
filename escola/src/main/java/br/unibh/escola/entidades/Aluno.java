@@ -2,60 +2,53 @@ package br.unibh.escola.entidades;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * Classe concreta de Aluno
+ * 
  * @author Diego Muniz
- * @veersion 1.0
+ * @version 1.0
  */
-public class Aluno extends Pessoa {
-	// Variaveis de instancia
-	private String matricula;
-	private Date dataAniversario;
-	
-	// Construtores
-	
-	/**
-	 * Construtor padr�o
-	 */
-	public Aluno(){}
-	
-	/**
-	 * Construtor apenas com os atributos b�sicos de Aluno
-	 * @param matricula
-	 * @param dataAniversario
-	 */
-	public Aluno(String matricula, Date dataAniversario) {
-		super();
-		this.matricula = matricula;
-		this.dataAniversario = dataAniversario;
-	}
 
-	public Aluno(Long id, String nome, String cpf, String matricula, Date dataAniversario) {
-		super(id, nome, cpf);
-		this.matricula = matricula;
-		this.dataAniversario = dataAniversario;
-	}
-	
-	// Getters and Setters
-	
+@Entity
+@XmlRootElement
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "matricula") )
+public class Aluno extends Pessoa {
+
+	@NotNull
+	@NotEmpty
+	@Size(min = 8, max = 8)
+	@Digits(fraction = 0, integer = 8)
+	private String matricula;
+
+	@Temporal(TemporalType.DATE)
+	private Date dataAniversario;
+
 	public String getMatricula() {
 		return matricula;
 	}
+
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
+
 	public Date getDataAniversario() {
 		return dataAniversario;
 	}
+
 	public void setDataAniversario(Date dataAniversario) {
 		this.dataAniversario = dataAniversario;
 	}
 
-	@Override
-	public String toString() {
-		return "Aluno [matricula=" + matricula + ", dataAniversario=" + dataAniversario + ", toString()="
-				+ super.toString() + "]";
-	}
-		
 }
-
