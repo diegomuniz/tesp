@@ -2,17 +2,19 @@ package br.unibh.escola.entidades;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * Classe concreta de Aluno
@@ -22,16 +24,19 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 
 @Entity
-@XmlRootElement
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "matricula") )
+@PrimaryKeyJoinColumn
+@Table(name="TB_ALUNO", uniqueConstraints = @UniqueConstraint(columnNames = "matricula") )
 public class Aluno extends Pessoa {
 
+	@Column(length=8, nullable=false, columnDefinition="CHAR(11)")
 	@NotNull
-	@NotEmpty
-	@Size(min = 8, max = 8)
+	@NotBlank
+	@Size(max = 8)
 	@Digits(fraction = 0, integer = 8)
+	@Pattern(regexp = "[A-Za-z\\d]*", message = "must contain only numbers")
 	private String matricula;
 
+	@Column(name="data_anivesario", nullable=true)
 	@Temporal(TemporalType.DATE)
 	private Date dataAniversario;
 
