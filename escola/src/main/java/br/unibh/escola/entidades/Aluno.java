@@ -36,7 +36,7 @@ public class Aluno extends Pessoa {
 	@Pattern(regexp = "[A-Za-z\\d]*", message = "must contain only numbers")
 	private String matricula;
 
-	@Column(name="data_anivesario", nullable=true)
+	@Column(name="data_aniversario", nullable=true)
 	@Temporal(TemporalType.DATE)
 	private Date dataAniversario;
 
