@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -25,7 +27,10 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @PrimaryKeyJoinColumn
-@Table(name="TB_ALUNO", uniqueConstraints = @UniqueConstraint(columnNames = "matricula") )
+@Table(name = "TB_ALUNO", uniqueConstraints = @UniqueConstraint(columnNames = "matricula"))
+@NamedQueries({
+@NamedQuery(name="Aluno.findByName", query = "select a from Aluno a where a.nome like :nome")
+})
 public class Aluno extends Pessoa {
 
 	@Column(length=8, nullable=false, columnDefinition="CHAR(11)")
