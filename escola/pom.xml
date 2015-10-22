@@ -140,6 +140,7 @@
       	<groupId>com.sun.faces</groupId>
       	<artifactId>jsf-api</artifactId>
       	<version>2.1.19</version>
+      	<scope>compile</scope>
       </dependency>
    </dependencies>
 

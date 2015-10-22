@@ -35,7 +35,7 @@ public abstract class Pessoa {
 	@Size(min=11, max=11)
 	@NotNull
 	@NotBlank
-	@Pattern(regexp = "d{11}", message = "must contain only numbers")
+	@Pattern(regexp = "\\d{11}", message = "must contain only numbers")
 	private String cpf;
 
 	public Long getId() {
