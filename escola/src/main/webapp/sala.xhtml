@@ -1,100 +1,135 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	template="/WEB-INF/templates/default.xhtml">
-	<ui:define name="content">
-		<h:panelGroup id="cadastro">
-			<h:form id="cad" rendered="#{alunomb.aluno != null}">
-				<p:panel>
-					<h:outputText value="Cadastro de Alunos"
-						style="font-size:18px;font-weight:bold" />
-					<p:messages />
-					<p:panelGrid columns="3" styleClass="ui-noborder">
-						<p:outputLabel value="Nome " />
-						<p:inputText id="nome" value="#{alunomb.aluno.nome}" size="50" />
-						<p:message for="nome" errorClass="invalid" />
-						<p:outputLabel value="CPF " />
-						<p:inputText id="cpf" value="#{alunomb.aluno.cpf}" size="14" />
-						<p:message for="cpf" errorClass="invalid" />
-						<p:outputLabel value="Matrícula " />
-						<p:inputText id="matricula" value="#{alunomb.aluno.matricula}"
-							size="10" />
-						<p:message for="matricula" errorClass="invalid" />
-						<p:outputLabel value="Data de Aniversário " />
-						<p:calendar id="dataAniversario"
-							value="#{alunomb.aluno.dataAniversario}" size="10"
-							datePattern="dd/MM/yyyy" />
-						<p:message for="dataAniversario" errorClass="invalid" />
-					</p:panelGrid>
-					<p:commandButton id="gravar" action="#{alunomb.gravar}"
-						value="Gravar" update="cadastro" ajax="false" />
-					<p:commandButton id="cancelar" action="#{alunomb.cancelar}"
-						value="Cancelar" immediate="true" update="cadastro,pesquisa"
-						ajax="false" />
-				</p:panel>
-			</h:form>
-		</h:panelGroup>
-		<p:panel id="pesquisa" rendered="#{alunomb.aluno == null}">
-			<h:outputText value="Lista de Alunos"
-				style="font-size:18px;font-weight:bold" />
-			<h:form id="arg">
-				<p:panelGrid columns="4" styleClass="ui-noborder">
-					<p:outputLabel value="Nome:" />
-					<p:inputText id="nomeArg" value="#{alunomb.nomeArg}" />
-					<p:commandButton id="pesquisar" action="#{alunomb.pesquisar}"
-						value="Pesquisar" update="pesquisa" ajax="false" />
-					<p:commandButton id="novo" action="#{alunomb.novo}" value="Novo"
-						update="pesquisa,cadastro" ajax="false" />
-				</p:panelGrid>
-			</h:form>
-			<h:panelGroup rendered="#{empty alunomb.alunos}">
-				<h:outputText value="Nenhum aluno existe" />
-			</h:panelGroup>
-			<h:form id="edt">
-				<p:dataTable id="tabela" var="aluno" value="#{alunomb.alunos}"
-					rendered="#{not empty alunomb.alunos}"
-					onrowclick="selectRow('#{aluno.id}')" paginator="true" rows="15">
-					<p:column headerText="Id" width="10%" sortBy="#{aluno.id}">
-						<div align="center">
-							<h:outputText value="#{aluno.id}" />
-						</div>
-					</p:column>
-					<p:column headerText="Nome" width="35%" sortBy="#{aluno.nome}">
-						<h:outputText value="#{aluno.nome}" />
-					</p:column>
-					<p:column headerText="CPF" width="20%">
-						<div align="center">
-							<h:outputText value="#{aluno.cpf}" />
-						</div>
-					</p:column>
-					<p:column headerText="Matricula" width="15%"
-						sortBy="#{aluno.matricula}">
-						<div align="center">
-							<h:outputText value="#{aluno.matricula}" />
-						</div>
-					</p:column>
-					<p:column headerText="Data de Aniversário" width="20%">
-						<div align="center">
-							<h:outputText value="#{aluno.dataAniversario}">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
-							</h:outputText>
-						</div>
-					</p:column>
-					<p:column headerText="Comandos" width="20%">
-						<div align="center">
-							<p:commandLink id="editar" action="#{alunomb.editar(aluno.id)}"
-								value="Editar" update="pesquisa" ajax="false" />
-							<h:outputText value=" " />
-							<p:commandLink id="excluir" action="#{alunomb.excluir(aluno.id)}"
-								value="Excluir" update="pesquisa" ajax="false" />
-						</div>
-					</p:column>
-				</p:dataTable>
-				<p:messages />
-			</h:form>
-		</p:panel>
-	</ui:define>
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/default.xhtml">
+    <ui:define name="content">
+        <h:panelGroup id="cadastro">
+            <h:form id="cad" rendered="#{salamb.sala != null}">
+                <p:panel>
+                    <h:outputText value="Cadastro de Salas" style="font-size:18px;font-weight:bold" />
+                    <p:messages />
+                    <p:panelGrid columns="3" styleClass="ui-noborder">
+                        <p:outputLabel value="Capacidade " />
+                        <p:inputText id="capacidade" value="#{salamb.sala.capacidade}" size="5" />
+                        <p:message for="capacidade" errorClass="invalid" />
+                        
+                        <p:outputLabel value="Codigo " />
+                        <p:inputText id="codigo" value="#{salamb.sala.codigo}" size="10" />
+                        <p:message for="codigo" errorClass="invalid" />
+                        
+                        <p:outputLabel value="possuiQuadroBranco " />
+                        <p:inputText id="possuiQuadroBranco" value="#{salamb.sala.possuiQuadroBranco}" size="2" />
+                        <p:message for="possuiQuadroBranco" errorClass="invalid" />
+                        
+                        <p:outputLabel value="possuiDataShow " />
+                        <p:inputText id="possuiDataShow" value="#{salamb.sala.possuiDataShow}" size="2" />
+                        <p:message for="possuiDataShow" errorClass="invalid" />
+                        
+                        <p:outputLabel value="possuiComputador " />
+                        <p:inputText id="possuiComputador" value="#{salamb.sala.possuiComputador}" size="2" />
+                        <p:message for="possuiComputador" errorClass="invalid" />
+                        
+                        <p:outputLabel value="observacao " />
+                        <p:inputText id="observacao" value="#{salamb.sala.observacao}" size="50" />
+                        <p:message for="observacao" errorClass="invalid" />
+                        
+                        <p:outputLabel value="status " />
+                        <p:inputText id="status" value="#{salamb.sala.status}" size="5" />
+                        <p:message for="status" errorClass="invalid" />
+                        
+                        <p:outputLabel value="dataTerminoManutencao " />
+                        <p:calendar id="dataTerminoManutencao" value="#{salamb.sala.dataTerminoManutencao}" size="10" datePattern="dd/MM/yyyy" />
+                        <p:message for="dataTerminoManutencao" errorClass="invalid" />
+                        
+                    </p:panelGrid>
+                    <p:commandButton id="gravar" action="#{salamb.gravar}" value="Gravar" update="cadastro" ajax="false" />
+                    <p:commandButton id="cancelar" action="#{salamb.cancelar}" value="Cancelar" immediate="true" update="cadastro,pesquisa" ajax="false" />
+                </p:panel>
+            </h:form>
+        </h:panelGroup>
+        <p:panel id="pesquisa" rendered="#{salamb.sala == null}">
+            <h:outputText value="Lista de Salas" style="font-size:18px;font-weight:bold" />
+            <h:form id="arg">
+                <p:panelGrid columns="4" styleClass="ui-noborder">
+                    <p:outputLabel value="Nome:" />
+                    <p:inputText id="nomeArg" value="#{salamb.nomeArg}" />
+                    <p:commandButton id="pesquisar" action="#{salamb.pesquisar}" value="Pesquisar" update="pesquisa" ajax="false" />
+                    <p:commandButton id="novo" action="#{salamb.novo}" value="Novo" update="pesquisa,cadastro" ajax="false" />
+                </p:panelGrid>
+            </h:form>
+            <h:panelGroup rendered="#{empty salamb.salas}">
+                <h:outputText value="Nenhuma sala existe" />
+            </h:panelGroup>
+            <h:form id="edt">
+                <p:dataTable id="tabela" var="sala" value="#{salamb.salas}" rendered="#{not empty salamb.salas}" onrowclick="selectRow('#{sala.id}')"
+                             paginator="true" rows="15">
+                    <p:column headerText="Id" width="10%" sortBy="#{sala.id}">
+                        <div align="center">
+                            <h:outputText value="#{sala.id}" />
+                        </div>
+                    </p:column>
+                    
+                    <p:column headerText="capacidade" width="10%" sortBy="#{sala.capacidade}">
+                        <div align="center">
+                            <h:outputText value="#{sala.capacidade}" />
+                        </div>
+                    </p:column>
+                    
+                    <p:column headerText="codigo" width="15%" sortBy="#{sala.codigo}">
+                        <div align="center">
+                            <h:outputText value="#{sala.codigo}" />
+                        </div>
+                    </p:column>
+                    
+                    <p:column headerText="possuiQuadroBranco" width="15%" sortBy="#{sala.possuiQuadroBranco}">
+                        <div align="center">
+                        	<h:outputText value="#{sala.possuiQuadroBranco}" />    
+                        </div>
+                    </p:column>
+                    
+                    <p:column headerText="possuiDataShow" width="15%" sortBy="#{sala.possuiDataShow}">
+                        <div align="center">
+                        	<h:outputText value="#{sala.possuiDataShow}" />    
+                        </div>
+                    </p:column>
+                    
+                    <p:column headerText="possuiComputador" width="15%" sortBy="#{sala.possuiComputador}">
+                        <div align="center">
+                        	<h:outputText value="#{sala.possuiComputador}" />    
+                        </div>
+                    </p:column>
+                    
+                    <p:column headerText="observacao" width="35%" sortBy="#{sala.observacao}">
+                        <div align="center">
+                        	<h:outputText value="#{sala.observacao}" />    
+                        </div>
+                    </p:column>
+                    
+                    <p:column headerText="status" width="10%" sortBy="#{sala.status}">
+                        <div align="center">
+                            <h:outputText value="#{sala.status}" />
+                        </div>
+                    </p:column>
+                    
+                    <p:column headerText="dataTerminoManutencao" width="20%" sortBy="#{sala.status}">
+                        <div align="center">
+                        	<h:outputText value="#{aluno.dataTerminoManutencao}"><f:convertDateTime pattern="dd/MM/yyyy" /></h:outputText>    
+                        </div>
+                    </p:column>                    
+                    
+                    <p:column headerText="Comandos" width="20%">
+                        <div align="center">
+                            <p:commandLink id="editar" action="#{salamb.editar(sala.id)}" value="Editar" update="pesquisa" ajax="false" />
+                            <h:outputText value=" " />
+                            <p:commandLink id="excluir" action="#{salamb.excluir(sala.id)}" value="Excluir" update="pesquisa" ajax="false" />
+                        </div>
+                    </p:column>
+                </p:dataTable>
+                <p:messages />
+            </h:form>
+        </p:panel>
+    </ui:define>
 </ui:composition>

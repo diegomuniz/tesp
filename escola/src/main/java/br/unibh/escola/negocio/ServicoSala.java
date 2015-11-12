@@ -2,10 +2,12 @@ package br.unibh.escola.negocio;
 
 import java.util.List;
 import java.util.logging.Logger;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+
 import br.unibh.escola.entidades.Sala;
 
 @Stateless
@@ -45,14 +47,14 @@ public class ServicoSala implements DAO<Sala, Long> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Sala> findAll() throws Exception {
-		log.info("Encontrando todos os Salas");
+		log.info("Encontrando todas as salas");
 		return em.createQuery("from Sala").getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Sala> findByName(String name) throws Exception {
-		log.info("Encontrando Salas " + name);
+		log.info("Encontrando salas " + name);
 		return em.createNamedQuery("Sala.findByName").setParameter("nome", name + "%").getResultList();
 	}
 }
