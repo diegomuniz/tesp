@@ -14,33 +14,16 @@ import br.unibh.escola.negocio.ServicoAluno;
 @ManagedBean(name = "alunomb")
 @ViewScoped
 public class ControleAluno {
+
 	@Inject
 	private Logger log;
+
 	@Inject
 	private ServicoAluno sa;
 	private Aluno aluno;
 	private String nomeArg;
 	private List<Aluno> alunos;
-
-	public Aluno getAluno() {
-		return aluno;
-	}
-
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
-	}
-
-	public String getNomeArg() {
-		return nomeArg;
-	}
-
-	public void setNomeArg(String nomeArg) {
-		this.nomeArg = nomeArg;
-	}
-
-	public List<Aluno> getAlunos() {
-		return alunos;
-	}
+	
 
 	@PostConstruct
 	public void inicializaLista() {
@@ -51,6 +34,9 @@ public class ControleAluno {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	// MÉTODO SALVAR
 
 	public void gravar() {
 		FacesMessage facesMsg;
@@ -69,7 +55,10 @@ public class ControleAluno {
 		facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Aluno gravado com sucesso!", "");
 		FacesContext.getCurrentInstance().addMessage("messagePanel", facesMsg);
 	}
-
+	
+	
+	// MÉTODO PESQUISAR
+	
 	public void pesquisar() {
 		try {
 			alunos = sa.findByName(nomeArg);
@@ -110,5 +99,31 @@ public class ControleAluno {
 		aluno = null;
 		facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Aluno excluído com sucesso!", "");
 		FacesContext.getCurrentInstance().addMessage("messagePanel", facesMsg);
+
 	}
+
+	// GETTERS E SETTERS
+
+	public Aluno getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
+	}
+
+	public String getNomeArg() {
+		return nomeArg;
+	}
+
+	public void setNomeArg(String nomeArg) {
+		this.nomeArg = nomeArg;
+	}
+
+	public List<Aluno> getAlunos() {
+		return alunos;
+	}
+
+
+
 }

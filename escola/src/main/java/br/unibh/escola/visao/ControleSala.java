@@ -16,33 +16,18 @@ import br.unibh.escola.negocio.ServicoSala;
 @ManagedBean(name = "salamb")
 @ViewScoped
 public class ControleSala {
+
 	@Inject
 	private Logger log;
+
 	@Inject
 	private ServicoSala ss;
 	private Sala sala;
+	private String codArg;
 	private String nomeArg;
 	private List<Sala> salas;
+	private Long id;
 
-	public Sala getSala() {
-		return sala;
-	}
-
-	public void setSala(Sala sala) {
-		this.sala = sala;
-	}
-
-	public String getNomeArg() {
-		return nomeArg;
-	}
-
-	public void setNomeArg(String nomeArg) {
-		this.nomeArg = nomeArg;
-	}
-
-	public List<Sala> getSalas() {
-		return salas;
-	}
 
 	@PostConstruct
 	public void inicializaLista() {
@@ -62,19 +47,19 @@ public class ControleSala {
 			} else {
 				sala = ss.update(sala);
 			}
-			salas = ss.findByName(nomeArg);
+			salas = ss.findByCod(codArg);
 		} catch (Exception e) {
 			facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro: " + e.getMessage(), "");
 			FacesContext.getCurrentInstance().addMessage("messagePanel", facesMsg);
 			return;
 		}
-		facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sala gravado com sucesso!", "");
+		facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Aluno gravado com sucesso!", "");
 		FacesContext.getCurrentInstance().addMessage("messagePanel", facesMsg);
 	}
 
 	public void pesquisar() {
 		try {
-			salas = ss.findByName(nomeArg);
+			salas = ss.findByCod(codArg);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -88,7 +73,7 @@ public class ControleSala {
 		sala = null;
 	}
 
-	public void editar(Long id) {
+	public void editar() {
 		try {
 			sala = ss.find(id);
 			return;
@@ -98,11 +83,11 @@ public class ControleSala {
 		sala = null;
 	}
 
-	public void excluir(Long id) {
+	public void excluir() {
 		FacesMessage facesMsg;
 		try {
 			ss.delete(ss.find(id));
-			salas = ss.findByName(nomeArg);
+			salas = ss.findByCod(codArg);
 		} catch (Exception e) {
 			e.printStackTrace();
 			facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro: " + e.getMessage(), "");
@@ -112,8 +97,53 @@ public class ControleSala {
 		sala = null;
 		facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sala excluída com sucesso!", "");
 		FacesContext.getCurrentInstance().addMessage("messagePanel", facesMsg);
+
+	}
+	
+	
+	// getters e setters
+	
+	public Sala getSala() {
+		return sala;
+	}
+
+	public void setSala(Sala sala) {
+		this.sala = sala;
+	}
+
+	public String getNomeArg() {
+		return nomeArg;
+	}
+
+	public void setNomeArg(String nomeArg) {
+		this.nomeArg = nomeArg;
+	}
+
+	public List<Sala> getSalas() {
+		return salas;
+	}
+	
+	
+
+	public String getCodArg() {
+		return codArg;
+	}
+
+	public void setCodArg(String codArg) {
+		this.codArg = codArg;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	
 	
+	
+
+
 }

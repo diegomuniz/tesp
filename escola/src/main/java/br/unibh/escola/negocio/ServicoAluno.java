@@ -6,11 +6,13 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+
 import br.unibh.escola.entidades.Aluno;
 
 @Stateless
 @LocalBean
 public class ServicoAluno implements DAO<Aluno, Long> {
+
 	@Inject
 	EntityManager em;
 	@Inject

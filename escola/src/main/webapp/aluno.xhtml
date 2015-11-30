@@ -10,7 +10,7 @@
 			<h:form id="cad" rendered="#{alunomb.aluno != null}">
 				<p:panel>
 					<h:outputText value="Cadastro de Alunos"
-						style="font-size:18px;font-weight:bold" />
+						style="fontsize:18px;font-weight:bold" />
 					<p:messages />
 					<p:panelGrid columns="3" styleClass="ui-noborder">
 						<p:outputLabel value="Nome " />
@@ -25,7 +25,7 @@
 						<p:message for="matricula" errorClass="invalid" />
 						<p:outputLabel value="Data de Aniversário " />
 						<p:calendar id="dataAniversario"
-							value="#{alunomb.aluno.dataAniversario}" size="10"
+							value="#{alunomb.aluno.data_aniversario}" size="10"
 							datePattern="dd/MM/yyyy" />
 						<p:message for="dataAniversario" errorClass="invalid" />
 					</p:panelGrid>
@@ -39,7 +39,7 @@
 		</h:panelGroup>
 		<p:panel id="pesquisa" rendered="#{alunomb.aluno == null}">
 			<h:outputText value="Lista de Alunos"
-				style="font-size:18px;font-weight:bold" />
+				style="font-size:18px;fontweight:bold" />
 			<h:form id="arg">
 				<p:panelGrid columns="4" styleClass="ui-noborder">
 					<p:outputLabel value="Nome:" />
@@ -78,7 +78,7 @@
 					</p:column>
 					<p:column headerText="Data de Aniversário" width="20%">
 						<div align="center">
-							<h:outputText value="#{aluno.dataAniversario}">
+							<h:outputText value="#{aluno.data_aniversario}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</div>

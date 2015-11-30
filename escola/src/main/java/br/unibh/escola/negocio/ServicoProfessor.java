@@ -2,15 +2,19 @@ package br.unibh.escola.negocio;
 
 import java.util.List;
 import java.util.logging.Logger;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+
+import br.unibh.escola.entidades.Aluno;
 import br.unibh.escola.entidades.Professor;
 
 @Stateless
 @LocalBean
 public class ServicoProfessor implements DAO<Professor, Long> {
+
 	@Inject
 	EntityManager em;
 	@Inject
@@ -45,7 +49,7 @@ public class ServicoProfessor implements DAO<Professor, Long> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Professor> findAll() throws Exception {
-		log.info("Encontrando todos os professores");
+		log.info("Encontrando todos os alunos");
 		return em.createQuery("from Professor").getResultList();
 	}
 

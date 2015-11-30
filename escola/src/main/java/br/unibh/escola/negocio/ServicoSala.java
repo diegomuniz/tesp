@@ -8,11 +8,13 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
+import br.unibh.escola.entidades.Aluno;
 import br.unibh.escola.entidades.Sala;
 
 @Stateless
 @LocalBean
 public class ServicoSala implements DAO<Sala, Long> {
+
 	@Inject
 	EntityManager em;
 	@Inject
@@ -47,14 +49,19 @@ public class ServicoSala implements DAO<Sala, Long> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Sala> findAll() throws Exception {
-		log.info("Encontrando todas as salas");
+		log.info("Encontrando todos as salas");
 		return em.createQuery("from Sala").getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Sala> findByName(String name) throws Exception {
-		log.info("Encontrando salas " + name);
-		return em.createNamedQuery("Sala.findByName").setParameter("nome", name + "%").getResultList();
+		return null;
 	}
+	
+	public List<Sala> findByCod(String cod) throws Exception {
+		log.info("Encontrando salas " + cod);
+		return em.createNamedQuery("Sala.findByCod").setParameter("codigo", cod+ "%").getResultList();
+	}
+	
 }

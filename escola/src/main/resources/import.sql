@@ -1,4 +1,5 @@
--- You can use this file to load seed data into the database using SQL statements 
+-- You can use this file to load seed data into the database using SQL statements
+insert into Member (id, name, email, phone_number) values (0, 'John Smith', 'john.smith@mailinator.com', '2125551212') 
 INSERT INTO tb_pessoa (id,cpf,nome) VALUES (1,"89068312375","Maxwell Huff");
 INSERT INTO tb_pessoa (id,cpf,nome) VALUES (2,"76362463392","Wallace Ratliff");
 INSERT INTO tb_pessoa (id,cpf,nome) VALUES (3,"96884360034","Gray Marsh");
@@ -399,6 +400,8 @@ INSERT INTO tb_professor (id,salario) VALUES (197,"7849.73");
 INSERT INTO tb_professor (id,salario) VALUES (198,"9103.13");
 INSERT INTO tb_professor (id,salario) VALUES (199,"5742.56");
 INSERT INTO tb_professor (id,salario) VALUES (200,"9335.86");
+
+
 INSERT INTO tb_sala (id,codigo,capacidade,possui_quadro_branco,possui_data_show,possui_computador,observacao,status,data_termino_manutencao) VALUES (1,"OY720",31,0,0,1,"parturient montes, nascetur ridiculus mus. Aenean eget magna. Suspendisse tristique",3,"2016-04-14");
 INSERT INTO tb_sala (id,codigo,capacidade,possui_quadro_branco,possui_data_show,possui_computador,observacao,status,data_termino_manutencao) VALUES (2,"BV378",71,1,1,1,"non sapien molestie orci tincidunt adipiscing. Mauris molestie pharetra nibh.",3,"2015-03-15");
 INSERT INTO tb_sala (id,codigo,capacidade,possui_quadro_branco,possui_data_show,possui_computador,observacao,status,data_termino_manutencao) VALUES (3,"MC880",5,1,0,0,"dolor quam, elementum at, egestas a, scelerisque sed, sapien. Nunc",2,"2016-07-13");
